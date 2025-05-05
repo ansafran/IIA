@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="hr">
+<head>
+  <meta charset="UTF-8">
+  <title>Forma dobrodošlice</title>
+  <script>
+    document.addEventListener("DOMContentLoaded", function () {
+      const ime = document.getElementById("ime");
+      const prezime = document.getElementById("prezime");
+      const titula = document.getElementById("titula");
+      const gumb = document.getElementById("posalji");
+
+      function prikaziPoruku() {
+        const poruka = `Dobro došli ${titula.value} ${ime.value} ${prezime.value}!`;
+        document.getElementById("rezultat").innerText = poruka;
+      }
+
+      gumb.addEventListener("click", prikaziPoruku);
+    });
+  </script>
+</head>
+<body>
+
+  <h2>Unesite svoje podatke:</h2>
+
+  Titula: 
+  <select id="titula">
+    <option value="gospođo">gospođo</option>
+    <option value="gospodine">gospodine</option>
+    <option value="doktorice">doktorice</option>
+    <option value="doktore">doktore</option>
+    <option value="magistrice">magistrice</option>
+    <option value="magistre">magistre</option>
+
+
+  </select>
+  <br><br>
+
+  Ime: <input type="text" id="ime"><br><br>
+  Prezime: <input type="text" id="prezime"><br><br>
+
+  <button id="posalji">Pošalji</button>
+
+  <h3 id="rezultat" style="color: green; margin-top: 20px;"></h3>
+
+</body>
+</html>

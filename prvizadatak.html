@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="hr">
+<head>
+  <meta charset="UTF-8">
+  <title>Unos i prikaz</title>
+  <script>
+    document.addEventListener("DOMContentLoaded", function () {
+      const input = document.getElementById("unos");
+      const rezultat = document.getElementById("rezultat");
+
+      function prikaziText() {
+        rezultat.innerText = input.value;
+      }
+
+      function prikaziHTML() {
+        rezultat.innerHTML = input.value;
+      }
+
+      function dodajText() {
+        rezultat.innerText += input.value;
+      }
+
+      function dodajHTML() {
+        rezultat.innerHTML += input.value;
+      }
+
+      function dodajNaPocetak() {
+        rezultat.innerHTML = input.value + rezultat.innerHTML;
+      }
+
+      function obrisi() {
+        rezultat.innerHTML = "";
+      }
+
+      document.getElementById("btnText").addEventListener("click", prikaziText);
+      document.getElementById("btnHTML").addEventListener("click", prikaziHTML);
+      document.getElementById("btnAppendText").addEventListener("click", dodajText);
+      document.getElementById("btnAppendHTML").addEventListener("click", dodajHTML);
+      document.getElementById("btnPrepend").addEventListener("click", dodajNaPocetak);
+      document.getElementById("btnClear").addEventListener("click", obrisi);
+    });
+  </script>
+</head>
+<body>
+
+  <h2>Unesite tekst:</h2>
+  <input type="text" id="unos" placeholder="Npr. Napravi zadaću!!!!">
+  <br><br>
+
+  <button id="btnText">Prikaži kao tekst</button>
+  <button id="btnHTML">Prikaži kao HTML</button>
+  <button id="btnAppendText">Dodaj kao tekst</button>
+  <button id="btnAppendHTML">Dodaj kao HTML</button>
+  <button id="btnPrepend">Dodaj na početak</button>
+  <button id="btnClear">Obriši</button>
+
+  <h3>Rezultat:</h3>
+  <p id="rezultat" style="border: 1px solid #ccc; padding: 10px;"></p>
+
+</body>
+</html>
