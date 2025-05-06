@@ -1,47 +1,81 @@
 <!DOCTYPE html>
 <html lang="hr">
 <head>
-  <meta charset="UTF-8">
-  <title>Forma dobrodošlice</title>
-  <script>
-    document.addEventListener("DOMContentLoaded", function () {
-      const ime = document.getElementById("ime");
-      const prezime = document.getElementById("prezime");
-      const titula = document.getElementById("titula");
-      const gumb = document.getElementById("posalji");
-
-      function prikaziPoruku() {
-        const poruka = `Dobro došli ${titula.value} ${ime.value} ${prezime.value}!`;
-        document.getElementById("rezultat").innerText = poruka;
-      }
-
-      gumb.addEventListener("click", prikaziPoruku);
-    });
-  </script>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Drugi zadatak - Ocijeni nas!</title>
+    <link rel="stylesheet" href="style.css">
+    <style>
+        .stars {
+            display: flex;
+            gap: 10px;
+            font-size: 2rem;
+            cursor: pointer;
+            color: #ccc;
+        }
+        .stars input {
+            display: none;
+        }
+        .stars label {
+            transition: 0.3s;
+        }
+        .stars input:checked ~ label,
+        .stars label:hover,
+        .stars label:hover ~ label {
+            color: gold;
+        }
+    </style>
 </head>
 <body>
+    <header>
+        <h1>Ocijeni nas! - Drugi zadatak</h1>
+        <nav>
+            <ul>
+                <li><a href="index.html">Početna</a></li>
+                <li><a href="prvizadatak.html">Anketa</a></li>
+                <li><a href="drugizadatak.html">Ocijeni nas!</a></li>
+            </ul>
+        </nav>
+    </header>
 
-  <h2>Unesite svoje podatke:</h2>
+    <section>
+        <h2>Kako vam se svidjela anketa?</h2>
+        <form id="rating-form">
+            <div>
+                <label>Ocjena:</label>
+                <div class="stars">
+                    <input type="radio" id="star5" name="rating" value="5"><label for="star5">&#9733;</label>
+                    <input type="radio" id="star4" name="rating" value="4"><label for="star4">&#9733;</label>
+                    <input type="radio" id="star3" name="rating" value="3"><label for="star3">&#9733;</label>
+                    <input type="radio" id="star2" name="rating" value="2"><label for="star2">&#9733;</label>
+                    <input type="radio" id="star1" name="rating" value="1"><label for="star1">&#9733;</label>
+                </div>
+            </div>
 
-  Titula: 
-  <select id="titula">
-    <option value="gospođo">gospođo</option>
-    <option value="gospodine">gospodine</option>
-    <option value="doktorice">doktorice</option>
-    <option value="doktore">doktore</option>
-    <option value="magistrice">magistrice</option>
-    <option value="magistre">magistre</option>
+            <div>
+                <label for="feedback-comments">Komentar:</label>
+                <textarea id="feedback-comments" name="feedback-comments" rows="4" placeholder="Vaš komentar..."></textarea>
+            </div>
 
+            <button type="submit">Pošaljite recenziju</button>
+            <p id="review-thank-you" style="display:none; color: green; font-weight: bold; margin-top: 20px;">
+                Hvala na vašoj ocjeni!
+            </p>
+        </form>
+    </section>
 
-  </select>
-  <br><br>
+    <footer>
+        <p>&copy; 2025 Anketa o održivom razvoju. Sva prava pridržana.</p>
+    </footer>
 
-  Ime: <input type="text" id="ime"><br><br>
-  Prezime: <input type="text" id="prezime"><br><br>
-
-  <button id="posalji">Pošalji</button>
-
-  <h3 id="rezultat" style="color: green; margin-top: 20px;"></h3>
-
+    <script>
+        document.getElementById("rating-form").addEventListener("submit", function(e) {
+            e.preventDefault();
+            const msg = document.getElementById("review-thank-you");
+            msg.style.display = "block";
+            setTimeout(() => msg.style.display = "none", 4000);
+            this.reset();
+        });
+    </script>
 </body>
 </html>

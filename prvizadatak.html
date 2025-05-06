@@ -1,61 +1,95 @@
 <!DOCTYPE html>
 <html lang="hr">
 <head>
-  <meta charset="UTF-8">
-  <title>Unos i prikaz</title>
-  <script>
-    document.addEventListener("DOMContentLoaded", function () {
-      const input = document.getElementById("unos");
-      const rezultat = document.getElementById("rezultat");
-
-      function prikaziText() {
-        rezultat.innerText = input.value;
-      }
-
-      function prikaziHTML() {
-        rezultat.innerHTML = input.value;
-      }
-
-      function dodajText() {
-        rezultat.innerText += input.value;
-      }
-
-      function dodajHTML() {
-        rezultat.innerHTML += input.value;
-      }
-
-      function dodajNaPocetak() {
-        rezultat.innerHTML = input.value + rezultat.innerHTML;
-      }
-
-      function obrisi() {
-        rezultat.innerHTML = "";
-      }
-
-      document.getElementById("btnText").addEventListener("click", prikaziText);
-      document.getElementById("btnHTML").addEventListener("click", prikaziHTML);
-      document.getElementById("btnAppendText").addEventListener("click", dodajText);
-      document.getElementById("btnAppendHTML").addEventListener("click", dodajHTML);
-      document.getElementById("btnPrepend").addEventListener("click", dodajNaPocetak);
-      document.getElementById("btnClear").addEventListener("click", obrisi);
-    });
-  </script>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Prvi zadatak - Anketa o održivom razvoju</title>
+    <link rel="stylesheet" href="style.css">
 </head>
 <body>
+    <header>
+        <h1>Anketa o održivom razvoju - Prvi zadatak</h1>
+        <nav>
+            <ul>
+                <li><a href="index.html">Početna</a></li>
+                <li><a href="prvizadatak.html">Anketa</a></li>
+                <li><a href="drugizadatak.html">Ocijeni nas!</a></li>
+            </ul>
+        </nav>
+    </header>
 
-  <h2>Unesite tekst:</h2>
-  <input type="text" id="unos" placeholder="Npr. Napravi zadaću!!!!">
-  <br><br>
+    <section>
+        <h2>Hvala što sudjelujete u našoj anketi o održivom razvoju!</h2>
+        <form id="survey-form">
+            <div>
+                <label for="name">Ime i prezime:</label>
+                <input type="text" id="name" name="name" required>
+            </div>
+            <div>
+                <label for="email">E-mail adresa:</label>
+                <input type="email" id="email" name="email" required>
+            </div>
+            <div>
+                <label>Spol:</label>
+                <input type="radio" name="gender" value="Muški"> Muški
+                <input type="radio" name="gender" value="Ženski"> Ženski
+                <input type="radio" name="gender" value="Ostalo"> Ostalo
+            </div>
+            <div>
+                <label for="city">Odaberite grad:</label>
+                <select id="city" name="city">
+                    <option value="Zagreb">Zagreb</option>
+                    <option value="Split">Split</option>
+                    <option value="Rijeka">Rijeka</option>
+                    <option value="Osijek">Osijek</option>
+                </select>
+            </div>
+            <div>
+                <h3>1. Reciklirate li redovito?</h3>
+                <input type="radio" name="recycling" value="Da"> Da
+                <input type="radio" name="recycling" value="Ne"> Ne
+                <input type="radio" name="recycling" value="Ponekad"> Ponekad
+            </div>
+            <div>
+                <h3>2. Koristite li energetski učinkovite uređaje?</h3>
+                <input type="radio" name="energy_efficiency" value="Da"> Da
+                <input type="radio" name="energy_efficiency" value="Ne"> Ne
+            </div>
+            <div>
+                <h3>3. Štedite li vodu?</h3>
+                <input type="radio" name="water_saving" value="Da"> Da
+                <input type="radio" name="water_saving" value="Ne"> Ne
+            </div>
+            <div>
+                <h3>4. Koje ekološke navike prakticirate? (možete označiti više)</h3>
+                <input type="checkbox" value="Kompostiranje"> Kompostiranje<br>
+                <input type="checkbox" value="Vožnja u zajedničkom prijevozu"> Vožnja u zajedničkom prijevozu<br>
+                <input type="checkbox" value="Smanjenje plastike"> Smanjenje plastike<br>
+                <input type="checkbox" value="Korištenje zelene energije"> Korištenje zelene energije
+            </div>
+            <div>
+                <label for="comments">Komentari:</label>
+                <textarea id="comments" name="comments" rows="4" placeholder="Što još radite da očuvate okoliš?"></textarea>
+            </div>
+            <button type="submit">Pošaljite anketu</button>
+            <p id="thank-you-message" style="display:none; color: green; font-weight: bold; margin-top: 20px;">
+                Hvala! Vaša anketa je uspješno poslana.
+            </p>
+        </form>
+    </section>
 
-  <button id="btnText">Prikaži kao tekst</button>
-  <button id="btnHTML">Prikaži kao HTML</button>
-  <button id="btnAppendText">Dodaj kao tekst</button>
-  <button id="btnAppendHTML">Dodaj kao HTML</button>
-  <button id="btnPrepend">Dodaj na početak</button>
-  <button id="btnClear">Obriši</button>
+    <footer>
+        <p>&copy; 2025 Anketa o održivom razvoju. Sva prava pridržana.</p>
+    </footer>
 
-  <h3>Rezultat:</h3>
-  <p id="rezultat" style="border: 1px solid #ccc; padding: 10px;"></p>
-
+    <script>
+        document.getElementById("survey-form").addEventListener("submit", function(e) {
+            e.preventDefault();
+            const msg = document.getElementById("thank-you-message");
+            msg.style.display = "block";
+            setTimeout(() => msg.style.display = "none", 4000);
+            this.reset();
+        });
+    </script>
 </body>
 </html>
